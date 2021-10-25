@@ -33,59 +33,59 @@ class App extends Component {
     alert(day);
   }
 
-// loginUser = async (e) => {
-//     console.log('loginUser')
-//     e.preventDefault()
-//     const url = baseUrl + '/users/login'
-//     const loginBody = {
-//       username: e.target.username.value,
-//       password: e.target.password.value
-//     }
-//     try {
+loginUser = async (e) => {
+    console.log('loginUser')
+    e.preventDefault()
+    const url = baseUrl + '/users/login'
+    const loginBody = {
+      username: e.target.username.value,
+      password: e.target.password.value
+    }
+    try {
 
-//       const response = await fetch(url, {
-//         method: 'POST',
-//         body: JSON.stringify(loginBody),
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         credentials: "include"
-//       })
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(loginBody),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: "include"
+      })
 
-//       console.log(response)
-//       console.log("BODY: ",response.body)
+      console.log(response)
+      console.log("BODY: ",response.body)
 
-//       if (response.status === 200) {
-//         this.getAppointment()
-//       }
-//     }
-//     catch (err) {
-//       console.log('Error => ', err);
-//     }
-//   }
+      if (response.status === 200) {
+        this.getAppointment()
+      }
+    }
+    catch (err) {
+      console.log('Error => ', err);
+    }
+  }
 
-  // register = async (e) => {
-  //   e.preventDefault()
-  //   const url = baseUrl + '/users/signup'
-  //   try {
-  //     const response = await fetch(url, {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         username: e.target.username.value,
-  //         password: e.target.password.value
-  //       }),
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //     if (response.status === 200) {
-  //       this.getAppointment()
-  //     }
-  //   }
-  //   catch (err) {
-  //     console.log('Error => ', err);
-  //   }
-  // }
+  register = async (e) => {
+    e.preventDefault()
+    const url = baseUrl + '/users/signup'
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          username: e.target.username.value,
+          password: e.target.password.value
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if (response.status === 200) {
+        this.getAppointment()
+      }
+    }
+    catch (err) {
+      console.log('Error => ', err);
+    }
+  }
 
   render() {
     return (

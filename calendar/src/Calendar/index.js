@@ -204,7 +204,7 @@ export default class Calendar extends React.Component {
 
         console.log("days: ", daysInMonth);
 
-        var totalSlots = [...blanks, ...daysInMonth];
+        const totalSlots = [...blanks, ...daysInMonth];
         let rows = [];
         let cells = [];
 
