@@ -42,8 +42,19 @@ class App extends Component {
    
   }
 
+<<<<<<< HEAD
 
 
+loginUser = async (e) => {
+    console.log('loginUser')
+    e.preventDefault()
+    const url = baseUrl + '/users/login'
+    const loginBody = {
+      username: e.target.username.value,
+      password: e.target.password.value
+    }
+    try {
+=======
 // loginUser = async (e) => {
 //     console.log('loginUser')
 //     e.preventDefault()
@@ -53,6 +64,7 @@ class App extends Component {
 //       password: e.target.password.value
 //     }
 //     try {
+>>>>>>> 08ea8b2 (added styling)
 
 //       const response = await fetch(url, {
 //         method: 'POST',
@@ -103,6 +115,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+<<<<<<< HEAD
+        <Calendar style={style} width="302px" 
+          onDayClick1={(e, day)=> this.onDayClick1(e, day)} handleOpenModal={this.handleOpenModal}/>  
+
+
+=======
         <div className="Title">
           <img class="tattooGun" src="../tatgun1.png"></img>
           <h1>Antonio Tattoos</h1>
@@ -110,6 +128,7 @@ class App extends Component {
         </div>
         <Calendar style={style} width="322px" 
           onDayClick={(e, day)=> this.onDayClick(e, day)}/>     
+>>>>>>> 08ea8b2 (added styling)
       </div>
     );
   }

@@ -1,5 +1,20 @@
 .App {
   text-align: center;
+  background: grey;
+}
+
+h1 {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 80px;
+}
+
+#aboutUs {
+  background: linear-gradient(to right bottom, pink, black);
+  padding: 30px;
+  max-width: 50%;
+  margin-left: 300px;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 40px;
 }
 
 .App-logo {
