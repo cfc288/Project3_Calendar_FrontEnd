@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Calendar from "./Calendar";
+import ReactModal from 'react-modal';
 
 
 let baseUrl = 'http://localhost:3003';
@@ -25,12 +26,22 @@ class App extends Component {
       modalOpen: false,
       userLoggedIn: false,
       admin: false,
+      showModal: false,
     }
 
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
 } 
 
  onDayClick = (e, day) => {
     alert(day);
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  handleCloseModal () {
+    this.setState({ showModal: false });
   }
 
 // loginUser = async (e) => {
@@ -93,7 +104,22 @@ class App extends Component {
         <div className="Title">
           <img class="tattooGun" src="../tatgun1.png"></img>
           <h1>Antonio Tattoos</h1>
-          <div id="aboutUs">About Us</div>
+          <div className="aboutUsModal">
+            <div id="aboutUs" onClick={this.handleOpenModal}>About Us</div>
+               <div>
+                <ReactModal 
+                   isOpen={this.state.showModal}>
+                  <p> Welcome to Antonio Tattoo! We thank you for your interest in our artwork and getting tattooed. Our artist is experienced and can assist with tattooing, whether it's your first tattoo or already have several, and can also assist with solutions for bad tattoos. 
+
+                    Our goal is to provide you with a professional artistic tattoo within our sterilized and comfortable environment. We want you to feel welcome and relaxed, while also providing humor and positive atmosphere for an enjoyable experience.
+
+                    Feel free to give us a call or use our calendar to schedule an appointment for a memorable experience in creating a lifetime memory!
+
+                   </p>
+                  <button onClick={this.handleCloseModal}>Close</button>
+                </ReactModal>
+              </div>
+            </div>
         </div>
         <Calendar style={style} width="322px" 
           onDayClick={(e, day)=> this.onDayClick(e, day)}/>     

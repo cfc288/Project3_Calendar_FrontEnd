@@ -17,6 +17,10 @@ h1 {
   font-size: 40px;
 }
 
+.aboutUsModal {
+  max-height: 100px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
