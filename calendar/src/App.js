@@ -1,9 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
-import Calendar from "./Calendar";
-import Day from "./Day";
+// import Calendar from "./Calendar";
+// import Day from "./Day";
 import ReactModal from 'react-modal';
+// import DayPicker from 'react-day-picker';
+import Calendar from "./DayPicker"
+
 
 
 
@@ -44,10 +47,10 @@ handleCloseModal () {
 }
 
 
- onDayClick1 = (e, day) => {
-   console.log('appjs onDayClick')
+//  onDayClick1 = (e, day) => {
+//    console.log('appjs onDayClick')
    
-  }
+// }
 
 
 
@@ -133,8 +136,9 @@ handleCloseModal () {
         </div>
 
         <div className="App">
-        <Calendar style={style} width="302px" 
-          onDayClick1={(e, day)=> this.onDayClick1(e, day)} handleOpenModal={this.handleOpenModal}/>  
+        <Calendar 
+          onDayClick1={(e, day)=> this.onDayClick1(e, day)}/>  
+        
         </div>   
 
       </div>
@@ -143,3 +147,6 @@ handleCloseModal () {
 }
 
 export default App;
+
+
+//style={style} width="302px" 

@@ -43,6 +43,9 @@ export default class Appointment extends Component {
 
 	render() {
 		return(
+			<div>
+				<p>appointment.js </p>
+			</div>
 			)
 	}
 
