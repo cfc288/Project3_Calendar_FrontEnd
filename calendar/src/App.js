@@ -110,6 +110,7 @@ handleCloseModal () {
   render() {
     return (
       <div className="App">
+        
         <div className="Title">
           <img class="tattooGun" src="../tatgun1.png"></img>
           <h1>Antonio Tattoos</h1>
@@ -130,11 +131,12 @@ handleCloseModal () {
               </div>
             </div>
         </div>
+
         <div className="App">
         <Calendar style={style} width="302px" 
           onDayClick1={(e, day)=> this.onDayClick1(e, day)} handleOpenModal={this.handleOpenModal}/>  
+        </div>   
 
-      </div>   
       </div>
     );
   }
