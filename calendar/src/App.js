@@ -30,11 +30,18 @@ class App extends Component {
       admin: false,
     }
 
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+
 } 
 
 
-
-
+handleOpenModal () {
+  this.setState({ showModal: true });
+}
+handleCloseModal () {
+  this.setState({ showModal: false });
+}
 
 
  onDayClick1 = (e, day) => {
