@@ -2,6 +2,9 @@ import './App.css';
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Calendar from "./Calendar";
+import Day from "./Day";
+import ReactModal from 'react-modal';
+
 
 
 let baseUrl = 'http://localhost:3003';
@@ -22,16 +25,24 @@ class App extends Component {
       day: '',
       year: '',
       time: '',
-      modalOpen: false,
+      showModal: false,
       userLoggedIn: false,
       admin: false,
     }
 
 } 
 
- onDayClick = (e, day) => {
-    alert(day);
+
+
+
+
+
+ onDayClick1 = (e, day) => {
+   console.log('appjs onDayClick')
+   
   }
+
+
 
 loginUser = async (e) => {
     console.log('loginUser')
@@ -87,11 +98,15 @@ loginUser = async (e) => {
     }
   }
 
+  // <Day onDayClick1={this.onDayClick1} handleOpenModal={this.handleOpenModal}/>
+
   render() {
     return (
       <div className="App">
         <Calendar style={style} width="302px" 
-          onDayClick={(e, day)=> this.onDayClick(e, day)}/>     
+          onDayClick1={(e, day)=> this.onDayClick1(e, day)} handleOpenModal={this.handleOpenModal}/>  
+
+
       </div>
     );
   }

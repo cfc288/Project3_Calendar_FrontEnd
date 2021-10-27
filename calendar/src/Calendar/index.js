@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import './calendar.css';
-// import Day from './Day' 
+import ReactModal from 'react-modal';
+import Day from '../Day/index' 
 
 export default class Calendar extends React.Component {
     state = {
@@ -9,18 +10,22 @@ export default class Calendar extends React.Component {
         today: moment(),
         showMonthPopup: false,
         showYearPopup: false,
-        selectedDay: null
+        selectedDay: null,
+        showModal: false
     }
 
     constructor(props) {
         super(props);
         this.width = props.width || "350px";
         this.style = props.style || {};
-        this.style.width = this.width; // add this
+        this.style.width = this.width; 
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
 
     weekdays = moment.weekdays(); //["Sunday", "Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
+    
     weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     months = moment.months();
 
@@ -162,15 +167,35 @@ export default class Calendar extends React.Component {
         );
     }
 
+
+    handleOpenModal () {
+        console.log('handleOpenModal')
+        this.setState({ showModal: true });
+      }
+
+
+    handleCloseModal () {
+        this.setState({ showModal: false });
+      }
+    
+
+
     onDayClick = (e, day) => {
         this.setState({
-            selectedDay: day
-        }, () => {
-            console.log("SELECTED DAY: ", this.state.selectedDay);
-        });
+            selectedDay: day,
 
-        this.props.onDayClick && this.props.onDayClick(e, day);
+        }, () => {
+            console.log(" calender/index.js this -> SELECTED DAY: ", this.state.selectedDay);
+        });
+      
+ // this.handleOpenModal();
+
+        this.props.onDayClick1 && this.props.onDayClick1(e, day);
+
+        this.handleOpenModal();
     }
+
+
 
     render() {
         // Map the weekdays i.e Sun, Mon, Tue etc as <td>
@@ -190,6 +215,8 @@ export default class Calendar extends React.Component {
 
         console.log("blanks: ", blanks);
 
+
+
         let daysInMonth = [];
         for (let d = 1; d <= this.daysInMonth(); d++) {
             let className = (d == this.currentDay() ? "day current-day": "day");
@@ -202,7 +229,7 @@ export default class Calendar extends React.Component {
         }
 
 
-        console.log("days: ", daysInMonth);
+        // console.log("days: ", daysInMonth);
 
         const totalSlots = [...blanks, ...daysInMonth];
         let rows = [];
@@ -259,6 +286,17 @@ export default class Calendar extends React.Component {
                         {trElems}
                     </tbody>
                 </table>
+        
+        
+        <div>
+        <ReactModal 
+           isOpen={this.state.showModal}
+        >
+        <p> this is a modal </p>
+        <Day />
+        <button onClick={this.handleCloseModal}>Close Modal</button>
+        </ReactModal>
+        </div>
 
             </div>
 
