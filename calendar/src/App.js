@@ -123,8 +123,11 @@ class App extends Component {
               </div>
             </div>
         </div>
-        <Calendar style={style} width="322px" 
-          onDayClick={(e, day)=> this.onDayClick(e, day)}/>     
+        <div className="App">
+        <Calendar style={style} width="302px" 
+          onDayClick1={(e, day)=> this.onDayClick1(e, day)} handleOpenModal={this.handleOpenModal}/>  
+
+      </div>   
       </div>
     );
   }
