@@ -11,7 +11,7 @@ export default class Calendar extends React.Component {
         showMonthPopup: false,
         showYearPopup: false,
         selectedDay: null,
-        showModal: false
+        
     }
 
     constructor(props) {
@@ -29,12 +29,15 @@ export default class Calendar extends React.Component {
     weekdaysShort = moment.weekdaysShort(); // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     months = moment.months();
 
+
     year = () => {
         return this.state.dateContext.format("Y");
     }
+
     month = () => {
         return this.state.dateContext.format("MMMM");
     }
+
     daysInMonth = () => {
         return this.state.dateContext.daysInMonth();
     }
@@ -168,15 +171,6 @@ export default class Calendar extends React.Component {
     }
 
 
-    handleOpenModal () {
-        console.log('handleOpenModal')
-        this.setState({ showModal: true });
-      }
-
-
-    handleCloseModal () {
-        this.setState({ showModal: false });
-      }
     
 
 
@@ -185,7 +179,7 @@ export default class Calendar extends React.Component {
             selectedDay: day,
 
         }, () => {
-            console.log(" calender/index.js this -> SELECTED DAY: ", this.state.selectedDay);
+            console.log("calender/index.js this -> SELECTED DAY: ", this.state.selectedDay, "calender/index.js this -> SELECTED Month: ", this.month(), "calender/index.js this -> SELECTED year: ", this.year());
         });
       
  // this.handleOpenModal();
@@ -293,7 +287,7 @@ export default class Calendar extends React.Component {
            isOpen={this.state.showModal}
         >
         <p> this is a modal </p>
-        <Day />
+        <Day selectedDay={this.selectedDay} />
         <button onClick={this.handleCloseModal}>Close Modal</button>
         </ReactModal>
         </div>

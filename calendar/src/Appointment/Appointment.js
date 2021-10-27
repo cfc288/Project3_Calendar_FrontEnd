@@ -26,7 +26,7 @@ export default class Appointment extends Component {
 		e.preventDefault()
 
 		fetch(this.props.baseUrl + '/', {
-			method: 'POST'
+			method: 'POST',
 			body: JSON.stringify({name: thist.state.name}),
 			headers: {
 				'Content-Type': 'application/json'
@@ -43,6 +43,9 @@ export default class Appointment extends Component {
 
 	render() {
 		return(
+			<div>
+				<p>appointment.js </p>
+			</div>
 			)
 	}
 

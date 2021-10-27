@@ -1,9 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
-import Calendar from "./Calendar";
-import Day from "./Day";
+// import Calendar from "./Calendar";
+// import Day from "./Day";
 import ReactModal from 'react-modal';
+// import DayPicker from 'react-day-picker';
+import Calendar from "./DayPicker"
+
 
 
 
@@ -30,17 +33,24 @@ class App extends Component {
       admin: false,
     }
 
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+
 } 
 
 
+handleOpenModal () {
+  this.setState({ showModal: true });
+}
+handleCloseModal () {
+  this.setState({ showModal: false });
+}
 
 
-
-
- onDayClick1 = (e, day) => {
-   console.log('appjs onDayClick')
+//  onDayClick1 = (e, day) => {
+//    console.log('appjs onDayClick')
    
-  }
+// }
 
 
 
@@ -103,6 +113,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         <div className="Title">
           <img class="tattooGun" src="../tatgun1.png"></img>
           <h1>Antonio Tattoos</h1>
@@ -123,14 +134,19 @@ class App extends Component {
               </div>
             </div>
         </div>
-        <div className="App">
-        <Calendar style={style} width="302px" 
-          onDayClick1={(e, day)=> this.onDayClick1(e, day)} handleOpenModal={this.handleOpenModal}/>  
 
-      </div>   
+        <div className="App">
+        <Calendar 
+          onDayClick1={(e, day)=> this.onDayClick1(e, day)}/>  
+        
+        </div>   
+
       </div>
     );
   }
 }
 
 export default App;
+
+
+//style={style} width="302px" 
