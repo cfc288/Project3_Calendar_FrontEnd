@@ -5,6 +5,32 @@ import 'react-day-picker/lib/style.css';
 import ReactModal from 'react-modal';
 import Day from '../Day/index' 
 
+
+// import DayPickerInput from 'react-day-picker/DayPickerInput';
+// import { DateUtils } from 'react-day-picker';
+// import dateFnsFormat from 'date-fns/format';
+// import dateFnsParse from 'date-fns/parse';
+
+
+
+
+// function parseDate(str, format, locale) {
+//   const parsed = dateFnsParse(str, format, new Date(), { locale });
+//   if (DateUtils.isDate(parsed)) {
+//     return parsed;
+//   }
+//   return undefined;
+// }
+
+// function formatDate(date, format, locale) {
+//   return dateFnsFormat(date, format, { locale });
+// }
+
+// const FORMAT = 'MM/dd/yyyy';
+
+
+
+
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +38,8 @@ export default class Calendar extends React.Component {
     
     this.state = {
       selectedDay: undefined,
-      showModal: false
+      showModal: false,
+
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -20,47 +47,60 @@ export default class Calendar extends React.Component {
 
 
 
-  handleOpenModal () {
-    this.setState({showModal: true });
-  }
-
+ 
 
   handleDayClick(day) {
     this.setState({ 
       selectedDay: day,
+    //  dateSelected: day,
        
     });
     this.handleOpenModal();
+    console.log(day)
+    
    // this.props.onDayClick1 && this.props.onDayClick1(e, day);
+   
+  }
+  handleOpenModal (day) {
+    this.setState({showModal: true });
+    
   }
 
 
+
   handleCloseModal () {
-    this.setState({ showModal: false }); }
-
-
+    this.setState({ showModal: false }); 
+  }
   
 
   render() {
+    console.log('inside render: ', this.state)
+    
+
     return (
       <div>
          <div>
-        <DayPicker onDayClick={this.handleDayClick} />
+        <DayPicker onDayClick={this.handleDayClick}  />
+
           {this.state.selectedDay ? (
             <p>You clicked {this.state.selectedDay.toLocaleDateString()}</p>
           ) : (
             <p>Please select a day.</p>
           )}
         </div>
-
+            
          <div>
           <ReactModal 
-            isOpen={this.state.showModal} >
-            <p> this is a modal </p>
-            <Day selectedDay={this.state.selectedDay}/>
+            isOpen={this.state.showModal} 
+            >
+           
+            <Day dateSelected={this.state.selectedDay}/>
+          
             <button onClick={this.handleCloseModal}>Close Modal</button>
           </ReactModal>
          </div>
+
+         
 
 
 
