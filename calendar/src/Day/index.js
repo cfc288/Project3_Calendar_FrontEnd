@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import './day.css';
-import DayPicker from 'react-day-picker';
+// import DayPicker from 'react-day-picker';
+// import DayPickerInput from 'react-day-picker/DayPickerInput';
+// import { DateUtils } from 'react-day-picker';
+// import dateFnsFormat from 'date-fns/format';
+// import dateFnsParse from 'date-fns/parse';
 
 
 
@@ -71,9 +75,15 @@ export default class Day extends React.Component {
 
   
     render () {
+
+      let dayForAppts = this.props.dateSelected
+      console.log('before:', dayForAppts)
+      
+      dayForAppts = dayForAppts.toLocaleDateString();
+      console.log('after:', dayForAppts)
     return (
       <div>
-        
+        <p> date {dayForAppts} </p>
         
       </div>
     );
