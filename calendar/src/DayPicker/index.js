@@ -56,16 +56,16 @@ export default class Calendar extends React.Component {
        
     });
     this.handleOpenModal();
-    console.log(day)
+    console.log('handleClick day: ',day)
     
    // this.props.onDayClick1 && this.props.onDayClick1(e, day);
    
   }
+
   handleOpenModal (day) {
     this.setState({showModal: true });
     
   }
-
 
 
   handleCloseModal () {
