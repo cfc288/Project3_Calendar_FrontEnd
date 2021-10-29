@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import './day.css';
+import Appointment from '../Appointment'
+import ReactModal from 'react-modal';
 // import DayPicker from 'react-day-picker';
 // import DayPickerInput from 'react-day-picker/DayPickerInput';
 // import { DateUtils } from 'react-day-picker';
@@ -12,6 +14,7 @@ import './day.css';
 
 
 let baseUrl = 'http://localhost:3003';
+//'https://proj3-calendar-frontend.herokuapp.com/;'
 
 
 export default class Day extends React.Component {
@@ -21,10 +24,19 @@ export default class Day extends React.Component {
         super(props);
 
         this.state = {
-          showModal: false,
+          showModal1: false,
+          showModal2: false,
+          showModal3: false,
+          showModal4: false,
+          showModal5: false,
+          showModal6: false,
+          showModal7: false,
+          showModal8: false,
+
           day: [],
           date: props.dateSelected.toLocaleDateString(),
-          selectedDateI: -1
+          selectedDateI: -1,
+          time: '',
           
         }
         //selectedDay: this.props.selectedDay
@@ -33,9 +45,38 @@ export default class Day extends React.Component {
 
     }
     
+    // handleCloseModal = () => {
+    //   this.setState({ showModal: false }); 
+    // }
+
+    handleOpenModal1 = () => {
+      this.setState({ showModal1: true})
+    }
+    handleOpenModal2 = () => {
+      this.setState({ showModal2: true})
+    }
+    handleOpenModal3 = () => {
+      this.setState({ showModal3: true})
+    }
+    handleOpenModal4 = () => {
+      this.setState({ showModal4: true})
+    }
+    handleOpenModal5 = () => {
+      this.setState({ showModal5: true})
+    }
+    handleOpenModal6 = () => {
+      this.setState({ showModal6: true})
+    }
+    handleOpenModal7 = () => {
+      this.setState({ showModal7: true})
+    }
+    handleOpenModal8 = () => {
+      this.setState({ showModal8: true})
+    }
 
 
-    toggleAvail = (setDay, slot) => {
+
+    toggleAvail = (setDay, slot ) => {
       console.log()
         fetch(baseUrl + '/availAppt/' + setDay._id, {
           method: 'PUT',
@@ -54,7 +95,9 @@ export default class Day extends React.Component {
           copyDay[findIndex] = resJson
           this.setState({
             //once updated set new array to "current array" in use (aka day)
-            day: copyDay
+            day: copyDay,
+            
+            
           })
         })
     }
@@ -178,155 +221,161 @@ export default class Day extends React.Component {
               
                   <tr >
                     
-                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot1") }}
+                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot1" , 1); this.handleOpenModal1();}}
                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot1 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot1)
-                            ? " #1 available "
-                            : " #1 not available"
+                            ? " 9am - available "
+                            : "time not available"
                           : "refresh your page"
                       } 
+                      
+                      <ReactModal 
+                          isOpen={this.state.showModal1}>
+                          <Appointment date={this.state.date} time={'9am'}/>
+                      </ReactModal>
                       </td>
-                      <td>
-                        <button>  </button>
-                      </td>
-
                   </tr>
 
                   <tr >
                     
-                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot2") }}
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot2"); this.handleOpenModal2(); }}
                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot2 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot2)
-                            ? " #2 available "
-                            : " #2 not available"
+                            ? " 10am - available "
+                            : "time not available"
                           : "refresh your page"
                       } 
-                      </td>
-                      <td>
-                        <button>  </button>
-                      </td>
-
+                   <ReactModal 
+                          isOpen={this.state.showModal2}>
+                          <Appointment date={this.state.date} time={'10am'}/>
+                    </ReactModal>
+                    </td>
                   </tr>
 
                   <tr >
                     
-                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot3") }}
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot3"); this.handleOpenModal3(); }}
                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot3 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot3)
-                            ? " #3 available "
-                            : " #3 not available"
+                            ? " 11am - available "
+                            : "time not available"
                           : "refresh your page"
                       } 
+                      <ReactModal 
+                          isOpen={this.state.showModal3}>
+                          <Appointment date={this.state.date} time={'11am'}/>
+                      </ReactModal>
                       </td>
-                      <td>
-                        <button>  </button>
-                      </td>
-
                   </tr>
 
                   <tr >
                     
-                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot4") }}
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot4"); this.handleOpenModal4(); }}
                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot4 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot4)
-                            ? " #4 available "
-                            : " #4 not available"
+                            ? " 1pm - available "
+                            : "time not available"
                           : "refresh your page"
                       } 
+                      <ReactModal 
+                          isOpen={this.state.showModal4}>
+                          <Appointment date={this.state.date} time={'1pm'}/>
+                      </ReactModal>
                       </td>
-                      <td>
-                        <button>  </button>
-                      </td>
-
                   </tr>
 
                   <tr >
                     
-                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot5") }}
+                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot5"); this.handleOpenModal5(); }}
                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot5 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot5)
-                            ? " #5 available "
-                            : " #5 not available"
+                            ? " 2pm - available "
+                            : "time not available"
                           : "refresh your page"
                       } 
+                      <ReactModal 
+                          isOpen={this.state.showModal5}>
+                          <Appointment date={this.state.date} time={'2pm'}/>
+                      </ReactModal>
                       </td>
-
-                      <td>
-                        <button>  </button>
-                      </td>
-
                   </tr>
 
                   <tr >
                     
-                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot6") }}
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot6"); this.handleOpenModal6();}}
                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot6 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot6)
-                            ? " #6 available "
-                            : " #6 not available"
+                            ? " 3pm - available "
+                            : "time not available"
                           : "refresh your page"
                       } 
+                      <ReactModal 
+                          isOpen={this.state.showModal6}>
+                          <Appointment date={this.state.date} time={'3pm'}/>
+                      </ReactModal>
                       </td>
-                    <td>
-                      <button>  </button>
-                    </td>
-
-                  </tr>
+                    </tr>
 
                   <tr >
                     
-                    <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot7") }}
+                    <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot7"); this.handleOpenModal7(); }}
                       className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot7 ? null : 'notAvail' }>
                         {
                             (this.state.selectedDateI > -1 )
                             ? (this.state.day[this.state.selectedDateI].availSlot7)
-                              ? " #7 available "
-                              : " #7 not available"
+                              ? " 4pm - available "
+                              : "time not available"
                             : "refresh your page"
                         } 
+                      <ReactModal 
+                          isOpen={this.state.showModal7}>
+                          <Appointment date={this.state.date} time={'4pm'}/>
+                      </ReactModal>
                       </td>
-                      <td>
-                        <button>  </button>
-                      </td>
-
-                  </tr>
+                    </tr>
 
                   <tr >
                     
-                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot8") }}
+                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot8"); this.handleOpenModal8(); }}
                       className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot8 ? null : 'notAvail' }>
                       {
                           (this.state.selectedDateI > -1 )
                           ? (this.state.day[this.state.selectedDateI].availSlot8)
-                            ? " #8 available "
-                            : " #8 not available"
+                            ? " 5pm - available "
+                            : "time not available"
                           : "refresh your page"
                       }
-                      </td>
-                      <td>
-                        <button>  </button>
-                      </td>
 
-                  </tr>
+                      <ReactModal 
+                        isOpen={this.state.showModal8}>
+                        <Appointment date={this.state.date} time={'5pm'}/>
+                      </ReactModal>
+                      </td>
+                    </tr>
             </tbody>
           
 
            
         </table>
+
         </div>
+
         
+        <div>
+          
+        </div>
       </div>
     );}
 }

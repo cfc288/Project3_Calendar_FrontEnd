@@ -135,7 +135,7 @@ handleCloseModal () {
               </div>
             </div>
         </div>
-
+        
         <div className="App">
         <Calendar 
           onDayClick1={(e, day)=> this.onDayClick1(e, day)}/>  
