@@ -22,7 +22,9 @@ export default class Day extends React.Component {
 
         this.state = {
           showModal: false,
-          availAppts: [],
+          day: [],
+          date: props.dateSelected.toLocaleDateString(),
+          selectedDateI: -1
           
         }
         //selectedDay: this.props.selectedDay
@@ -32,63 +34,295 @@ export default class Day extends React.Component {
     }
     
 
-    getAvailAppts = () => {
-      // fetch to the backend
-      fetch(baseUrl + "/availAppt",{
-        credentials: "include"
-      })
-      .then(res => {
-        if(res.status === 200) {
-          return res.json()
-        } else {
-          return []
-        }
-      }).then(data => {
-        console.log(data)
-        this.setState({ availAppt: data })
-      })
-    }
 
-
-    toggleCelebrated = (availAppt) => {
-     console.log(availAppt)
-      // fetch(baseUrl + '/availAppt/' + appt._id, {
-      //   method: 'PUT',
-      //   body: JSON.stringify({celebrated: !appts.celebrated}),
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   credentials: "include"
-      // }).then(res => res.json())
-      // .then(resJson => {
-      //   // console.log(resJson)
-      //   const copyAvailAppts = [...this.state.availAppts]
-      //   const findIndex = this.state.availAppts.findIndex(
-      //     appt => appt._id === resJson._id)
-      //   copyAvailAppts[findIndex].celebrated = resJson.celebrated
-      //   this.setState({
-      //     appointments: copyAvailAppts
-      //   })
-      // })
+    toggleAvail = (setDay, slot) => {
+      console.log()
+        fetch(baseUrl + '/availAppt/' + setDay._id, {
+          method: 'PUT',
+          body: JSON.stringify({[slot] : !setDay[slot]}),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          // credentials: "include"
+        }).then(res => res.json())
+        .then(resJson => {
+          // console.log(resJson)
+          const copyDay = [...this.state.day]
+          const findIndex = this.state.day.findIndex(
+            day => day._id === resJson._id)
+            //checks copy against resJson{which = updated data} 
+          copyDay[findIndex] = resJson
+          this.setState({
+            //once updated set new array to "current array" in use (aka day)
+            day: copyDay
+          })
+        })
     }
   
+
+  addDay = (newDay) => {
+    
+    console.log('this.state.day[1].dayForAppts in addDay: ', this.state.day[1].dayForAppts)
+   
+    console.log('addDay') 
+    
+    fetch(baseUrl + '/availAppt', {
+    method: 'POST',
+    body: JSON.stringify({
+      dayForAppts: newDay
+    }),
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    // credentials: "include"
+    }).then( res => res.json())
+    .then(createdDate => {
+      const copyDay = [...this.state.day]
+      copyDay.push(createdDate)
+      this.setState({
+        day: copyDay,
+        selectedDateI: copyDay.length - 1
+      })
+    })
+  }
+    
+
+  checkingDay = () => {
+    // console.log('checkingDay')
+    // console.log('this.state.day in checkingDay: ', typeof this.state.day)
+    //  console.log('this.state.day[1].dayForAppts in checkingDay: ', typeof this.state.day[1].dayForAppts)
+    // console.log('this.state.date in checkingDay', typeof this.state.date)
+    const dayDoesExistInDB = this.state.day.some((dateObj)=> {
+      return dateObj.dayForAppts === this.state.date
+    })
+    console.log('dayDoesExist', dayDoesExistInDB)
+
+    // this.state.day.forEach((checkDay) => {  
+    //   console.log('this.state.date in checkday: ', this.state.date)
+    //     console.log('checkday.dayForAppts: ',  checkDay.dayForAppts)
+
+      if (dayDoesExistInDB) { 
+          //console.log('all good')
+          const foundIndex = this.state.day.findIndex((dayObj)=> {
+            return dayObj.dayForAppts === this.state.date 
+          })
+          this.setState({ 
+            selectedDateI: foundIndex
+          })
+      } else {
+        console.log('addDay')
+        this.addDay(this.state.date)
+      } 
+    }
+   
+
+
+
+  getDay = () => {
+    console.log('getDay')
+    // fetch to the backend
+    fetch(baseUrl + "/availAppt", 
+    // {
+    //   credentials: "include"
+    // }
+    )
+    .then(res => {
+      if(res.status === 200) {
+        return res.json()
+      } else {
+        return []
+      }
+    }).then(data => {
+      console.log('data in getDay: ', data)
+      this.setState({ day: data })
+      console.log('this.state.day in getDay: ', this.state.day)
+      this.checkingDay()
+    }).then(console.log('this.state.day outside getDay: ', this.state.day))
+  }
+
+
+
+
+  componentDidMount() {
+    console.log('componentDidMount')
+    this.getDay()
+  }
+
 
   
     render () {
 
+
+      // console.log('this.date: ', this.date)
+      console.log('this.props: ', this.props.dateSelected.toLocaleDateString())
       let dayForAppts = this.props.dateSelected
       console.log('before:', dayForAppts)
       dayForAppts = dayForAppts.toLocaleDateString();
       console.log('after:', dayForAppts)
+      console.log('this.state.date: ', this.state.date)
+
+
+
+
 
     return (
       <div>
-        <p> Available time slots for {dayForAppts} </p>
+        <p> Available time slots for  ..{this.state.date}.. which is {dayForAppts} </p>
+        <p> not props {this.state.date}</p>
+       
         
+        <div>
+          <table 
+          >
+          
+            <tbody>
+              
+                  <tr >
+                    
+                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot1") }}
+                     className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot1 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot1)
+                            ? " #1 available "
+                            : " #1 not available"
+                          : "refresh your page"
+                      } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot2") }}
+                     className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot2 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot2)
+                            ? " #2 available "
+                            : " #2 not available"
+                          : "refresh your page"
+                      } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot3") }}
+                     className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot3 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot3)
+                            ? " #3 available "
+                            : " #3 not available"
+                          : "refresh your page"
+                      } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot4") }}
+                     className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot4 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot4)
+                            ? " #4 available "
+                            : " #4 not available"
+                          : "refresh your page"
+                      } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot5") }}
+                     className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot5 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot5)
+                            ? " #5 available "
+                            : " #5 not available"
+                          : "refresh your page"
+                      } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                  <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot6") }}
+                     className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot6 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot6)
+                            ? " #6 available "
+                            : " #6 not available"
+                          : "refresh your page"
+                      } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                    <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot7") }}
+                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot7 ? null : 'notAvail' }>
+                        {
+                            (this.state.selectedDateI > -1 )
+                            ? (this.state.day[this.state.selectedDateI].availSlot7)
+                              ? " #7 available "
+                              : " #7 not available"
+                            : "refresh your page"
+                        } 
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                      <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot8") }}
+                      className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot8 ? null : 'notAvail' }>
+                      {
+                          (this.state.selectedDateI > -1 )
+                          ? (this.state.day[this.state.selectedDateI].availSlot8)
+                            ? " #8 available "
+                            : " #8 not available"
+                          : "refresh your page"
+                      }
+                      </td>
+
+                  </tr>
+
+                  <tr >
+                    
+                      <td>
+
+                      </td>
+
+                  </tr>
+                
+            </tbody>
+          
+
+           
+        </table>
+        </div>
         
       </div>
     );}
 }
+
+
+
+
+//<td onDoubleClick={() => this.toggleCelebrated(holiday)}
+//                             className={ holiday.celebrated ? 'celebrated' : null }>
+//                             { holiday.name }
+//                             </td>
 
 
 
@@ -102,10 +336,7 @@ export default class Day extends React.Component {
 //                         return (
 
 //                         <tr key={i}>
-//                             <td onDoubleClick={() => this.toggleCelebrated(holiday)}
-//                             className={ holiday.celebrated ? 'celebrated' : null }>
-//                             { holiday.name }
-//                             </td>
+//                            
 
 //                             <td> {availAppt.time} </td>
                             
