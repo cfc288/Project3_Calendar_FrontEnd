@@ -105,7 +105,7 @@ export default class Day extends React.Component {
 
   addDay = (newDay) => {
     
-    console.log('this.state.day[1].dayForAppts in addDay: ', this.state.day[1].dayForAppts)
+    // console.log('this.state.day[1].dayForAppts in addDay: ', this.state.day[1].dayForAppts)
    
     console.log('addDay') 
     
@@ -205,15 +205,11 @@ export default class Day extends React.Component {
       console.log('this.state.date: ', this.state.date)
 
 
-
-
-
     return (
       <div>
         <p> Available time slots for {this.state.date} </p>
         
-       
-        
+      
         <div>
           <table >
           

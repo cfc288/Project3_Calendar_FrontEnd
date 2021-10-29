@@ -6,12 +6,17 @@ import ReactDOM from "react-dom";
 import ReactModal from 'react-modal';
 // import DayPicker from 'react-day-picker';
 import Calendar from "./DayPicker"
+import img from "./img/tatgun1.png"
+import img2 from "./img/tatgun2.png"
+import img3 from "./img/shop2.png"
 
+const modalStyle = {
+  backgroundImage:"url(" + img3 + ")",
+}
 
+let baseUrl = 'https://proj3-calendar-frontend.herokuapp.com/;'
+// 'http://localhost:3003';
 
-
-let baseUrl = 'http://localhost:3003';
-//'https://proj3-calendar-frontend.herokuapp.com/;'
 
 const style = {
   position: "relative",
@@ -116,21 +121,27 @@ handleCloseModal () {
       <div className="App">
         
         <div className="Title">
-          <img class="tattooGun" src="../tatgun1.png"></img>
-          <h1>Antonio Tattoos</h1>
+          <h1>
+          <img class="tattooGun" src={img2}></img>
+          React Trio Tattoos
+          <img class="tattooGun" src={img}></img>
+          </h1>
           <div className="aboutUsModal">
             <div id="aboutUs" onClick={this.handleOpenModal}>About Us</div>
-               <div>
+               <div className="modalAbout">
                 <ReactModal 
                    isOpen={this.state.showModal}>
-                  <p> Welcome to Antonio Tattoo! We thank you for your interest in our artwork and getting tattooed. Our artist is experienced and can assist with tattooing, whether it's your first tattoo or already have several, and can also assist with solutions for bad tattoos. 
+                   <div className="insideAboutModal" style={modalStyle}>
 
-                    Our goal is to provide you with a professional artistic tattoo within our sterilized and comfortable environment. We want you to feel welcome and relaxed, while also providing humor and positive atmosphere for an enjoyable experience.
+                   <h2 className="aboutUsHead">Welcome to React Trio Tattoos!</h2>
+                  <p className="aboutUsPar1">We thank you for your interest in our artwork and getting tattooed. Our artist is experienced and can assist with tattooing, whether it's your first tattoo or already have several, and can also assist with solutions for bad tattoos. </p>
 
-                    Feel free to give us a call or use our calendar to schedule an appointment for a memorable experience in creating a lifetime memory!
+                   <p className="aboutUsPar2"> Our goal is to provide you with a professional artistic tattoo within our sterilized and comfortable environment. We want you to feel welcome and relaxed, while also providing humor and positive atmosphere for an enjoyable experience.</p>
 
-                   </p>
-                  <button onClick={this.handleCloseModal}>Close</button>
+                    <p className="aboutUsPar3"> Feel free to give us a call or use our calendar to schedule an appointment for a memorable experience in creating a lifetime memory!</p>
+
+                  <button className="aboutButton" onClick={this.handleCloseModal}>Home</button>
+                    </div>
                 </ReactModal>
               </div>
             </div>
