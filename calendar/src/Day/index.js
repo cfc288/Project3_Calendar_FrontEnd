@@ -167,13 +167,12 @@ export default class Day extends React.Component {
 
     return (
       <div>
-        <p> Available time slots for  ..{this.state.date}.. which is {dayForAppts} </p>
-        <p> not props {this.state.date}</p>
+        <p> Available time slots for {this.state.date} </p>
+        
        
         
         <div>
-          <table 
-          >
+          <table >
           
             <tbody>
               
@@ -188,6 +187,9 @@ export default class Day extends React.Component {
                             : " #1 not available"
                           : "refresh your page"
                       } 
+                      </td>
+                      <td>
+                        <button>  </button>
                       </td>
 
                   </tr>
@@ -204,6 +206,9 @@ export default class Day extends React.Component {
                           : "refresh your page"
                       } 
                       </td>
+                      <td>
+                        <button>  </button>
+                      </td>
 
                   </tr>
 
@@ -219,6 +224,9 @@ export default class Day extends React.Component {
                           : "refresh your page"
                       } 
                       </td>
+                      <td>
+                        <button>  </button>
+                      </td>
 
                   </tr>
 
@@ -233,6 +241,9 @@ export default class Day extends React.Component {
                             : " #4 not available"
                           : "refresh your page"
                       } 
+                      </td>
+                      <td>
+                        <button>  </button>
                       </td>
 
                   </tr>
@@ -250,6 +261,10 @@ export default class Day extends React.Component {
                       } 
                       </td>
 
+                      <td>
+                        <button>  </button>
+                      </td>
+
                   </tr>
 
                   <tr >
@@ -264,6 +279,9 @@ export default class Day extends React.Component {
                           : "refresh your page"
                       } 
                       </td>
+                    <td>
+                      <button>  </button>
+                    </td>
 
                   </tr>
 
@@ -278,6 +296,9 @@ export default class Day extends React.Component {
                               : " #7 not available"
                             : "refresh your page"
                         } 
+                      </td>
+                      <td>
+                        <button>  </button>
                       </td>
 
                   </tr>
@@ -294,17 +315,11 @@ export default class Day extends React.Component {
                           : "refresh your page"
                       }
                       </td>
-
-                  </tr>
-
-                  <tr >
-                    
                       <td>
-
+                        <button>  </button>
                       </td>
 
                   </tr>
-                
             </tbody>
           
 

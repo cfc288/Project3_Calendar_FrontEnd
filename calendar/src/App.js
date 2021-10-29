@@ -11,6 +11,7 @@ import Calendar from "./DayPicker"
 
 
 let baseUrl = 'http://localhost:3003';
+//'https://proj3-calendar-frontend.herokuapp.com/;'
 
 const style = {
   position: "relative",
@@ -108,7 +109,7 @@ handleCloseModal () {
 //     }
 //   }
 
-  // <Day onDayClick1={this.onDayClick1} handleOpenModal={this.handleOpenModal}/>
+  
 
   render() {
     return (
