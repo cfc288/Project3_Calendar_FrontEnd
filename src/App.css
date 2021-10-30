@@ -10,16 +10,17 @@ h1{
   background: linear-gradient(pink, white);
   border: solid 4px white;
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #aboutUs {
  /* background: linear-gradient(to right bottom, pink, white);*/
- background: pink;
+  background: pink;
   padding: 20px;
   max-width: 50%;
   margin-left: 300px;
   font-family: 'Cabin Sketch', cursive;
-  font-size: 40px;
+  font-size: 50px;
   border: solid 4px white;
   transition: background-color 1s;
 }

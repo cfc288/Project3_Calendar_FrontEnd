@@ -98,10 +98,11 @@ export default class Appointment extends React.Component {
                 <br /><label > Full Name: </label>
                 <input type='text' id='fullName' name='fullName' onChange={ this.handleChange } /><br />
 
-                <br /><label> phone: </label>
+                <br /><label> Phone: </label>
                 <input type='text' id='phone' name='phone' onChange={this.handleChange}/><br />
 
-				       <br /> <label> email: </label>
+								<br /><label> Email: </label>
+
                 <input type='text' id='email' name='phone' onChange={this.handleChange}/><br />
 
 
