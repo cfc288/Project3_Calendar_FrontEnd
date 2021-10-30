@@ -119,7 +119,7 @@ export default class Day extends React.Component {
     headers: {
       'Content-Type' : 'application/json'
     },
-    // credentials: "include"
+        // credentials: "include"
     }).then( res => res.json())
     .then(createdDate => {
       const copyDay = [...this.state.day]
