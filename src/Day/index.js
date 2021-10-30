@@ -214,7 +214,7 @@ export default class Day extends React.Component {
         
       
         <div>
-          <table >
+          <table className="timeSlots">
           
             <tbody>
               

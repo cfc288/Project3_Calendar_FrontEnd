@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import './appointment.css'
 import img4 from "../img/shop.jpeg"
 
-
+const modalStyle = {
+  backgroundImage:"url(" + img4 + ")",
+}
 
 let baseUrl = 'http://localhost:3003';
 //'https://proj3-calendar-frontend.herokuapp.com/;'
@@ -88,28 +90,27 @@ export default class Appointment extends React.Component {
 		console.log('this.state.apptTime insideRender: ' , this.state.apptTime)
 		return(
 			<div>
+			<div className="dayModal" style={modalStyle}>
 				<form onSubmit={this.handleSubmit}>
+								<br /><label> Appointment Date: {this.props.date} </label><br />
+								<br /><label> Appointment Time: {this.props.time} </label><br />
 
-				<label> appt date appt time</label>
+                <br /><label > Full Name: </label>
+                <input type='text' id='fullName' name='fullName' onChange={ this.handleChange } /><br />
 
-                <label > fullName: </label>
-                <input type='text' id='fullName' name='fullName' onChange={ this.handleChange } 
-                />
+                <br /><label> phone: </label>
+                <input type='text' id='phone' name='phone' onChange={this.handleChange}/><br />
 
-                <label> phone: </label>
-                <input type='text' id='phone' name='phone' onChange={this.handleChange}/>
-
-				        <label> email: </label>
-                <input type='text' id='email' name='phone' onChange={this.handleChange}/>
-
+				       <br /> <label> email: </label>
+                <input type='text' id='email' name='phone' onChange={this.handleChange}/><br />
 
 
-                <input type="submit" value="Add Appointment" />
+                <br /><input type="submit" value="Add Appointment" />
 
                 <br/ ><input className="apptButton" type="submit" value="Add Appointment" />
                 <button className="backButton" onClick={this.handleCloseModal}>Select New Day</button>
             </form>
-			
+				</div>
 			</div>
 			)
 	}

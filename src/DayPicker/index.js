@@ -79,7 +79,7 @@ export default class Calendar extends React.Component {
 
     return (
       <div>
-         <div>
+         
         <DayPicker onDayClick={this.handleDayClick}  />
 
           {this.state.selectedDay ? (
@@ -87,18 +87,18 @@ export default class Calendar extends React.Component {
           ) : (
             <p>Please select a day.</p>
           )}
-        </div>
+       
             
-         <div>
+       
           <ReactModal 
             isOpen={this.state.showModal} 
             >
            
             <Day dateSelected={this.state.selectedDay}/>
           
-            <button onClick={this.handleCloseModal}>Home</button>
+            <button className="slotsButton" onClick={this.handleCloseModal}>Home</button>
           </ReactModal>
-         </div>
+        
 
          
 
