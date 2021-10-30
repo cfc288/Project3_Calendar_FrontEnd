@@ -346,7 +346,6 @@ export default class Day extends React.Component {
                     </tr>
 
                   <tr >
-                    
                       <td onClick={()=> {this.toggleAvail(this.state.day[this.state.selectedDateI], "availSlot8"); this.handleOpenModal8(); }}
                       className={this.state.selectedDateI > -1 && this.state.day[this.state.selectedDateI].availSlot8 ? null : 'notAvail' }>
                       {
@@ -364,16 +363,9 @@ export default class Day extends React.Component {
                       </td>
                     </tr>
             </tbody>
-          
-
-           
         </table>
 
               </div>
-
-            <div>
-          
-          </div>
         </div>
       </div>
     );}

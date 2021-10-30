@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import './appointment.css'
 import img4 from "../img/shop.jpeg"
 
-<<<<<<< HEAD
+
 const modalStyle = {
   backgroundImage:"url(" + img4 + ")",
 }
-=======
->>>>>>> e5dd4215 (ugh:)
+
 
 let baseUrl = 'http://localhost:3003';
 //'https://proj3-calendar-frontend.herokuapp.com/;'
@@ -37,6 +36,7 @@ export default class Appointment extends React.Component {
 	// 		[e.target.name]: e.target.value
 	// 	})
 	// }
+
 	handleChange(event) {
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -98,17 +98,17 @@ export default class Appointment extends React.Component {
                 <br /><label > Full Name: </label>
                 <input type='text' id='fullName' name='fullName' onChange={ this.handleChange } /><br />
 
-                <br /><label> phone: </label>
+                <br /><label> Phone: </label>
                 <input type='text' id='phone' name='phone' onChange={this.handleChange}/><br />
 
-				       <br /> <label> email: </label>
+				       <br /> <label> Email: </label>
                 <input type='text' id='email' name='phone' onChange={this.handleChange}/><br />
 
 
                 <br /><input type="submit" value="Add Appointment" />
 
 
-			<button onClick={this.handleCloseModal}>Select New Day</button>
+			<button onClick={this.handleCloseModal}>Select A Different Day</button>
             </form>
 
 				</div>
