@@ -102,9 +102,11 @@ export default class Appointment extends React.Component {
 				<label> email: </label>
                 <input type='text' id='email' name='phone' onChange={this.handleChange}/>
 
-               
+
 
                 <input type="submit" value="Add Appointment" />
+                <br/ ><input className="apptButton" type="submit" value="Add Appointment" />
+                <button className="backButton" onClick={this.handleCloseModal}>Select New Day</button>
             </form>
 			
 			</div>
