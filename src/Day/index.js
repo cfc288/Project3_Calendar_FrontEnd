@@ -213,7 +213,7 @@ export default class Day extends React.Component {
         <p> Available time slots for {this.state.date} </p>
         
       
-        <div>
+        <div className="timeTable">
           <table className="timeSlots">
           
             <tbody>

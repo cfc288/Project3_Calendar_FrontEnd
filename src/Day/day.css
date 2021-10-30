@@ -30,6 +30,12 @@ p{
     text-shadow: 2px 2px 6px lightblue;
 }
 
+.timeTable{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .slotsButton{
   font-family: 'Titan One';
   font-size: 20px;
@@ -41,6 +47,6 @@ p{
   width: 210px;
   padding: 10px;
   margin-bottom: 5%;
-  margin-left: 45%;
+  margin-left: 40%;
   border: solid 2px white;
 }
