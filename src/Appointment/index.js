@@ -2,81 +2,81 @@ import React, { Component } from 'react'
 import './appointment.css'
 import img4 from "../img/shop.jpeg"
 
+<<<<<<< HEAD
 const modalStyle = {
   backgroundImage:"url(" + img4 + ")",
 }
+=======
+>>>>>>> e5dd4215 (ugh:)
 
 let baseUrl = 'http://localhost:3003';
 //'https://proj3-calendar-frontend.herokuapp.com/;'
 
+
+
 export default class Appointment extends React.Component {
 	constructor(props) {
 		super(props)
-
 		this.state = {
-			apptTime: props.time,
-			apptDate: props.date,
+			// apptTime: props.time,
+			// apptDate: props.date,
 			fullName:'',
 			phone: '',
 			email: '',
 			over18: false,
 			showModal: false,
 			createdAppts: [],
-
-
+			selectedTime: -1,
 		}
-	}
-
-
-
-	handleChange = (e) => {
-		// console.log('event.target.value',e.target.value)
-		// console.log('event.target.name',e.target.name)
-		this.setState({
-			[e.target.name]: e.target.value
 		
-		})
 	}
-
-
-	// handleBoxChange(event) {
-	// 	const target = event.target;
-	// 	const value = target.type === 'checkbox' ? target.checked : target.value;
-	// 	const name = target.name;
-	
+	// handleChange = (e) => {
+	// 	// console.log('event.target.value',e.target.value)
+	// 	// console.log('event.target.name',e.target.name)
 	// 	this.setState({
-	// 	  [name]: value
-	// 	});
-	//   }
-
-
-	handleCloseModal = () => {
-	this.setState({ showModal: false }); 
-	}
-
-//add a pop up on submit
-	
-
-	handleSubmit = () => {
-		// e.preventDefault()
-
+	// 		[e.target.name]: e.target.value
+	// 	})
+	// }
+	handleChange(event) {
+		const target = event.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const name = target.name;
+		this.setState({
+		  [name]: value
+		});
+	  }
+	  // handleCloseModal = () => {
+		// this.setState({ showModal: false });
+	  // }
+		handleOpenModal () {
+		  this.setState({ showModal: true });
+		}
+		handleCloseModal () {
+		  this.setState({ showModal: false });
+		}
+	handleSubmit = (e) => {
+		e.preventDefault()
 		fetch(baseUrl + '/appointments', {
 			method: 'POST',
-			body: JSON.stringify({fullName: this.state.fullName, phone: this.state.phone, email: this.state.email}),
+			body: JSON.stringify({
+				apptTime: this.state.apptTime,
+				fullName: this.state.fullName,
+				phone: this.state.phone,
+				email: this.state.email
+			}),
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		})
-		.then (response => {
-            return response.json()
+		.then (res => {
+            return res.json()
 		})
-		.then( data => {
-
+		.then((data) => {
 			const copyData = [...this.state.createdAppts]
 			copyData.push(data)
 				//this.props.addAppointment(data)
 			this.setState({
-				appttime: '',
+				apptTime: '',
 				apptDate: '',
 				fullName:'',
 				phone: '',
@@ -84,12 +84,12 @@ export default class Appointment extends React.Component {
 			}).catch (error => console.error({'Error': error}))
 		})
 	}
-
 	render() {
 		console.log('this.state.apptDate insideRender: ' , this.state.apptDate)
 		console.log('this.state.apptTime insideRender: ' , this.state.apptTime)
 		return(
 			<div>
+
 			<div className="dayModal" style={modalStyle}>
 				<form onSubmit={this.handleSubmit}>
 								<br /><label> Appointment Date: {this.props.date} </label><br />
@@ -107,17 +107,14 @@ export default class Appointment extends React.Component {
 
                 <br /><input type="submit" value="Add Appointment" />
 
-                <br/ ><input className="apptButton" type="submit" value="Add Appointment" />
-                <button className="backButton" onClick={this.handleCloseModal}>Select New Day</button>
+
+			<button onClick={this.handleCloseModal}>Select New Day</button>
             </form>
+
 				</div>
 			</div>
 			)
 	}
-
-
-
-
 }
 
 
