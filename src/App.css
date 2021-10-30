@@ -1,13 +1,15 @@
 .App {
   text-align: center;
-  background: lightblue;
-  background-size: cover;
+  /*background: lightblue;*/
+  background-image: url(./img/main.png);
+  background-size: auto;
+  /*background-repeat: no-repeat;*/
 }
 
 h1{
   font-family: 'Cabin Sketch', cursive;
   font-size: 80px;
-  background: linear-gradient(pink, white);
+  background: linear-gradient(teal, white);
   border: solid 4px white;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -15,7 +17,7 @@ h1{
 
 #aboutUs {
  /* background: linear-gradient(to right bottom, pink, white);*/
-  background: pink;
+  background: lightpink;
   padding: 20px;
   max-width: 50%;
   margin-left: 300px;
@@ -26,7 +28,7 @@ h1{
 }
 
 #aboutUs:hover{
-  background: lightblue;
+  background: lightseagreen;
 }
 
 .aboutUsModal {
@@ -98,7 +100,7 @@ h1{
 
 .DayPicker-Months{
   border: solid 4px white;
-  background: linear-gradient(white, pink);
+  background: linear-gradient(white, teal);
 }
 
 p{
