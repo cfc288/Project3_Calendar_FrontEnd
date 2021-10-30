@@ -2,3 +2,21 @@
     color: grey;
   }
 
+.appointmentModal{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(3,3,3,.6);
+    background-blend-mode: multiply;
+    line-height: 3.5rem;
+    text-align: center;
+}
+
+td{
+    font-family: 'Special Elite', cursive;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    color: rgba(255,255,255,.9);
+    text-shadow: 2px 2px 6px lightblue;
+}

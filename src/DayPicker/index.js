@@ -96,7 +96,7 @@ export default class Calendar extends React.Component {
            
             <Day dateSelected={this.state.selectedDay}/>
           
-            <button onClick={this.handleCloseModal}>Close Modal</button>
+            <button onClick={this.handleCloseModal}>Home</button>
           </ReactModal>
          </div>
 

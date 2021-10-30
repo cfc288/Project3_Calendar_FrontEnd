@@ -8,9 +8,11 @@ import ReactModal from 'react-modal';
 // import { DateUtils } from 'react-day-picker';
 // import dateFnsFormat from 'date-fns/format';
 // import dateFnsParse from 'date-fns/parse';
+import img5 from "../img/tattooAction.jpeg"
 
-
-
+const modalStyle = {
+  backgroundImage:"url(" + img5 + ")",
+}
 
 
 let baseUrl = 'http://localhost:3003';
@@ -207,6 +209,7 @@ export default class Day extends React.Component {
 
     return (
       <div>
+      <div className="dayModal" style={modalStyle}>
         <p> Available time slots for {this.state.date} </p>
         
       
@@ -366,11 +369,11 @@ export default class Day extends React.Component {
            
         </table>
 
-        </div>
+              </div>
 
-        
-        <div>
+            <div>
           
+          </div>
         </div>
       </div>
     );}
