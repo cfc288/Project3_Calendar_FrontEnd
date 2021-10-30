@@ -8,7 +8,7 @@ const modalStyle = {
   backgroundImage:"url(" + img4 + ")",
 }
 
-let baseUrl = 'http://localhost:3003';
+let baseUrl = process.env.REACT_APP_BASEURL;
 //'https://proj3-calendar-frontend.herokuapp.com/;'
 
 export default class Appointment extends React.Component {
@@ -94,8 +94,9 @@ export default class Appointment extends React.Component {
 		console.log('this.state.apptDate insideRender: ' , this.state.apptDate)
 		console.log('this.state.apptTime insideRender: ' , this.state.apptTime)
 		return(
-			<div>
 			<div className="dayModal" style={modalStyle}>
+			<div>
+			<div >
 				<form onSubmit={this.handleSubmit}>
 								<br /><label> Appointment Date: {this.props.date} </label><br />
 								<br /><label> Appointment Time: {this.props.time} </label><br />
@@ -110,85 +111,29 @@ export default class Appointment extends React.Component {
                 <input type='text' id='email' name='email' onChange={this.handleChange}/><br />
 
                 <br/> <input className="apptButton" type="submit" value="Add Appointment" />
-                <button className="backButton" onClick={this.handleCloseModal}>Select New Day/Time</button>
-            </form>
-			</div>
-				<ReactModal 
-				isOpen={this.state.showModal}>
-					<Edit 
-					apptTime={this.state.apptTime}
-					apptDate={this.state.apptDate}
-					fullName={this.state.fullName}
-					phone={this.state.phone}
-					email={this.state.email}
-					createdData={this.state.createdData}
-					/>
 
+                
+            </form>
+
+			</div>
+
+				<ReactModal 
+					isOpen={this.state.showModal}>
+						<Edit 
+						apptTime={this.state.apptTime}
+						apptDate={this.state.apptDate}
+						fullName={this.state.fullName}
+						phone={this.state.phone}
+						email={this.state.email}
+						createdData={this.state.createdData}
+						/>
 				</ReactModal>
 			</div>
+			<button className="backButton" onClick={this.handleCloseModal} > Select Different Day</button>
+			</div> 
+			
 			)
 	}
 }
 
 
-
-
-
-
-// <label> over18: </label>
-// <input type='checkbox' id='over18' name='over18' onChange={this.handleChange}/>
-
-// <tr key={i}>
-
-// <td> {bookmark.apptDate} </td>
-// <td> {bookmark.apptTime} </td>
-// <td> {bookmark.fullName} </td>
-// <td> {bookmark.phone} </td>
-// <td> {bookmark.email} </td>
-
-// </tr>
-
-
-// 	<tr>
-// 		<td onClick={() => {this.showEditForm(bookmark)} } onChange={this.handleChange}>  Change details on form
-// 		{
-// 			this.state.modalOpen 
-
-// 			&&
-// 			<div>
-// 			<form onSubmit={(e)=>{ this.props.handleSubmit(e, 
-// 				bookmark._id, 
-// 				this.state.updatedapptDate, this.state.updatedApptTime, 
-// 				this.state.updatedName,
-// 				this.state.updatedPhone
-// 				this.state.updatedEmail)} }>
-
-// 			<label>Title: </label>
-// 			<input type='text' id='title' name="updatedTitle"  onChange={this.handleChange} />
-
-// 			<label>Description: </label>
-// 			<input type='text' id='title' name="updatedDes"  onChange={this.handleChange} />
-
-
-// 			<label>Url: </label>
-// 			<input type='text' id='title' name="updatedUrl"  onChange={this.handleChange} />
-
-
-// 			<input type="submit" value="Edit" />
-
-// 			</form>
-// 			</div>
-	
-// 		}
-// 		</td>
-// </tr>
-                         
-//                     )})
-                    
-//                         }
-//                 </tbody>
-//             </table>
-//             <button onClick={this.closeModal} > Close Form</button>
-//         </div>
-        
-//     )}

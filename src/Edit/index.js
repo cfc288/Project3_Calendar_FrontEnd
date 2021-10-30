@@ -12,7 +12,7 @@ const modalStyle2 = {
   backgroundImage:"url(" + img7 + ")",
 }
 
-let baseUrl = 'http://localhost:3003';
+let baseUrl = process.env.REACT_APP_BASEURL
 
 export default class Edit extends React.Component {
     constructor(props) {
@@ -69,7 +69,11 @@ export default class Edit extends React.Component {
             })
           })
       }
-
+      
+      handleCloseModal = () => {
+        alert('appointment Scheduled!')
+        // this.setState({ showModal: false }); 
+        }
 
 
     //puts all appointments in an array to delete
@@ -157,20 +161,37 @@ render() {
 
                             <br /><tr>Name: {this.state.fullName} </tr><br />
                             
-                            <br /><tr>Email: {this.state.email} </tr><br />
+                            <tr>Email: {this.state.email} </tr><br />
 
-                            <br /><tr>Phone: {this.state.phone} </tr><br />
+                            <tr>Phone: {this.state.phone} </tr><br />
 
-                            <br /><tr onClick={() => this.deleteAppt(this.state.appointmentToBeEdited._id)}>(DELETE)
+                            <tr onClick={() => this.deleteAppt(this.state.appointmentToBeEdited._id)}>(DELETE)
                             </tr><br /> 
 
-                            <br /><tr onClick={() => {this.showEditForm()} } onChange={this.handleChange}>  Show Edit Form<br />
+                            <tr onClick={() => {this.showEditForm()} } onChange={this.handleChange}>  Show Edit Form<br />
                            
                             <ReactModal
                               isOpen={this.state.showModal}>
                                 <div>
+                                  
                                 <div className="editModal2" style={modalStyle2}>
+                                
                                 <form onSubmit={(e)=>{ this.handleSubmit(e, this.state.appointmentToBeEdited, this.state.updatedName, this.state.updatedPhone, this.state.updatedEmail)} }>
+
+
+                                <div className="editModal" style={modalStyle}>
+                                <table> 
+                                  <tbody>
+                                    <tr>Is this information correct?</tr>
+                                    <br />
+                                  <tr>Name: {this.state.fullName} </tr><br />
+                                                            
+                                  <tr>Email: {this.state.email} </tr><br />
+
+                                  <tr>Phone: {this.state.phone} </tr><br />
+                                  </tbody>
+                                </table>
+
 
                                 <br /><label>Name: </label>
                                 <input type='text' id='fullName' name="updatedName"  onChange={this.handleChange} /><br />
@@ -183,8 +204,9 @@ render() {
                                 <input type='text' id='email' name="updatedEmail"  onChange={this.handleChange} /><br />
 
 
-                                <br /><input className="editFormButton" type="submit" value="Edit" />
+                                <br /><input className="editFormButton" type="submit" value="Edit" onClick={this.handleCloseModal} />
 
+                                </div>
                                 </form>
                                 </div>
                                 </div>
@@ -198,7 +220,7 @@ render() {
                         
                 </tbody>
             </table>
-           <button className="closeFormButton" onClick={this.closeModal} > Close Form</button>
+           <button className="closeFormButton" onClick={this.handleCloseModal} > Close Form</button>
         </div>
         </div>
     )}

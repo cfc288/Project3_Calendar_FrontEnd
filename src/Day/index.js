@@ -15,7 +15,7 @@ const modalStyle = {
 }
 
 
-let baseUrl = 'http://localhost:3003';
+let baseUrl = process.env.REACT_APP_BASEURL
 //'https://proj3-calendar-frontend.herokuapp.com/;'
 
 
