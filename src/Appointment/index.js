@@ -3,6 +3,7 @@ import './appointment.css'
 import img4 from "../img/shop.jpeg"
 import ReactModal from 'react-modal';
 import Edit from '../Edit/index'
+import Show from '../Show/index'
 
 const modalStyle = {
   backgroundImage:"url(" + img4 + ")",
@@ -67,6 +68,7 @@ export default class Appointment extends React.Component {
 			method: 'POST',
 			body: JSON.stringify(
 				{apptTime: this.props.time,
+				apptDate: this.props.date,
 				fullName: this.state.fullName, 
 				phone: this.state.phone, 
 				email: this.state.email}
@@ -87,6 +89,7 @@ export default class Appointment extends React.Component {
 			})
 			console.log('copyData: ',copyData)
 			console.log('createdData:', createdData)
+			this.props.closeAll()
 		})
 	}
 
@@ -98,38 +101,29 @@ export default class Appointment extends React.Component {
 			<div>
 			<div >
 				<form onSubmit={this.handleSubmit}>
-								<br /><label> Appointment Date: {this.props.date} </label><br />
-								<br /><label> Appointment Time: {this.props.time} </label><br />
+					<br /><label> Appointment Date: {this.props.date} </label><br />
 
-                <br /><label > Full Name: </label>
-                <input type='text' id='fullName' name='fullName' onChange={ this.handleChange } /><br />
+					<br /><label> Appointment Time: {this.props.time} </label><br />
 
-                <br /><label> Phone: </label>
-                <input type='text' id='phone' name='phone' onChange={this.handleChange}/><br />
+					<br /><label > Full Name: </label>
+					<input type='text' id='fullName' name='fullName' onChange={ this.handleChange } /><br />
 
-				<br /><label> Email: </label>
-                <input type='text' id='email' name='email' onChange={this.handleChange}/><br />
+					<br /><label> Phone: </label>
+					<input type='text' id='phone' name='phone' onChange={this.handleChange}/><br />
 
-                <br/> <input className="apptButton" type="submit" value="Add Appointment" />
+					<br /><label> Email: </label>
+					<input type='text' id='email' name='email' onChange={this.handleChange}/><br />
+
+					<br/> <input className="apptButton" type="submit" value="Add Appointment" />
 
                 
             </form>
-
+			
+			<button className="backButton" onClick={this.props.closeAll}> Home (Appt)</button>
+				</div>
 			</div>
-
-				<ReactModal 
-					isOpen={this.state.showModal}>
-						<Edit 
-						apptTime={this.state.apptTime}
-						apptDate={this.state.apptDate}
-						fullName={this.state.fullName}
-						phone={this.state.phone}
-						email={this.state.email}
-						createdData={this.state.createdData}
-						/>
-				</ReactModal>
-			</div>
-			<button className="backButton" onClick={this.handleCloseModal} > Select Different Day</button>
+			
+			
 			</div> 
 			
 			)

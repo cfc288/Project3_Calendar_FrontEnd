@@ -95,9 +95,9 @@ export default class Calendar extends React.Component {
             isOpen={this.state.showModal} 
             >
            
-            <Day dateSelected={this.state.selectedDay}/>
+            <Day dateSelected={this.state.selectedDay} closeAll={this.handleCloseModal} />
           
-            <button className="slotsButton" onClick={this.handleCloseModal}>Home</button>
+            <button className="slotsButton" onClick={this.handleCloseModal}>Home (DayPicker)</button>
           </ReactModal>
         
 
